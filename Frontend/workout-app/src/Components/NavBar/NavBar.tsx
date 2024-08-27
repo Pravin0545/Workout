@@ -62,7 +62,7 @@ const NavBar: React.FC = () => {
               key={item.to}
               label={item.label}
               to={item.to}
-              isActive={item?.isActive}
+              // isActive={item?.isActive}
             />
           ))}
         </div>

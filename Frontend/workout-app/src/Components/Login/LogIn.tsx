@@ -1,13 +1,34 @@
 import Logo from "../../Images/SignInLogo.jpg";
 import BG from "../../Images/gym-pic-Background.jpg";
+import { useForm } from "react-hook-form";
+import InputTextField from "../Molecule/InputTextField";
+import { Link } from "react-router-dom";
+
+type formValues = {
+  email: string;
+  password: string;
+};
+
 const LogIn: React.FC = () => {
+  const form = useForm<formValues>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
+
+  // console.log("error", errors);
+  const onSubmit = (data: formValues) => {
+    console.log("submitted", data);
+  };
   return (
     <>
       <div
         className="bg-cover bg-center"
         style={{
           backgroundImage: `url(${BG})`,
-          mixBlendMode: "overlay",
+          // mixBlendMode: "overlay",
         }}
       >
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -23,34 +44,35 @@ const LogIn: React.FC = () => {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              method="POST"
+              className="space-y-6"
+              noValidate
+            >
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-gray-200"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
+                {errors.email && (
+                  <p className="text-red-500">Email is required</p>
+                )}
+                <InputTextField
+                  title="Email ID"
+                  type="email"
+                  name="email"
+                  register={register}
+                />
               </div>
 
               <div>
+                {errors.password && (
+                  <p className="text-red-500">password is required</p>
+                )}
+                <InputTextField
+                  title="Password"
+                  type="password"
+                  name="password"
+                  register={register}
+                />
                 <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium leading-6 text-gray-200"
-                  >
-                    Password
-                  </label>
                   <div className="text-sm">
                     <a
                       href="#"
@@ -59,16 +81,6 @@ const LogIn: React.FC = () => {
                       Forgot password?
                     </a>
                   </div>
-                </div>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
                 </div>
               </div>
 
@@ -83,13 +95,19 @@ const LogIn: React.FC = () => {
             </form>
 
             <p className="mt-10 text-center text-sm text-gray-500">
-              Not a member?{" "}
-              <a
+              Not a member?
+              {/* <a
                 href="#"
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
                 Sign In
-              </a>
+              </a> */}
+              <Link
+                to="/signin"
+                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              >
+                Sign In
+              </Link>
             </p>
           </div>
         </div>
