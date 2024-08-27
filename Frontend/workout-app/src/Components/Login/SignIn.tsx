@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../../Images/SignInLogo.jpg";
-import BG from "../../Images/gym-pic-Background.jpg";
+// import Logo from "../../Images/SignInLogo.jpg";
+// import BG from "../../Images/gym-pic-Background.jpg";
 import { useForm } from "react-hook-form";
 import InputTextField from "../Molecule/InputTextField";
 
@@ -25,7 +25,7 @@ const SignIn: React.FC = () => {
       <div
         className="bg-cover bg-center"
         style={{
-          backgroundImage: `url(${BG})`,
+          // backgroundImage: `url(${BG})`,
           mixBlendMode: "overlay",
         }}
       >
@@ -33,10 +33,10 @@ const SignIn: React.FC = () => {
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               alt="Your Company"
-              src={Logo}
+              // src={Logo}
               className="mx-auto h-20 w-auto rounded-full"
             />
-            <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">
+            <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-black">
               Sign In to your account
             </h2>
           </div>
@@ -70,7 +70,7 @@ const SignIn: React.FC = () => {
                   name="password"
                   register={register}
                 />
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <div className="text-sm">
                     <a
                       href="#"
@@ -79,7 +79,7 @@ const SignIn: React.FC = () => {
                       Forgot password?
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div>

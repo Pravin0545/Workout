@@ -1,5 +1,5 @@
-import Logo from "../../Images/SignInLogo.jpg";
-import BG from "../../Images/gym-pic-Background.jpg";
+// import Logo from "../../Images/SignInLogo.jpg";
+// import BG from "../../Images/gym-pic-Background.jpg";
 import { useForm } from "react-hook-form";
 import InputTextField from "../Molecule/InputTextField";
 import { Link } from "react-router-dom";
@@ -25,20 +25,22 @@ const LogIn: React.FC = () => {
   return (
     <>
       <div
-        className="bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${BG})`,
-          // mixBlendMode: "overlay",
-        }}
+        className="bg-cover bg-center "
+        style={
+          {
+            // backgroundImage: `url(${BG})`,
+            // mixBlendMode: "overlay",
+          }
+        }
       >
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               alt="Your Company"
-              src={Logo}
+              // src={Logo}
               className="mx-auto h-20 w-auto rounded-full"
             />
-            <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-200">
+            <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-black">
               Log In to your account
             </h2>
           </div>
