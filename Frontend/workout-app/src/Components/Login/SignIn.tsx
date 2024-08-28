@@ -1,97 +1,107 @@
 import React from "react";
-// import Logo from "../../Images/SignInLogo.jpg";
-// import BG from "../../Images/gym-pic-Background.jpg";
 import { useForm } from "react-hook-form";
 import InputTextField from "../Molecule/InputTextField";
+import Button from "../Atom/Button";
+import DatePicker from "../Molecule/DatePicker";
 
 type formValues = {
   email: string;
   password: string;
+  gender: string;
 };
 
 const SignIn: React.FC = () => {
   const form = useForm<formValues>();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = form;
+  const { register, handleSubmit, reset } = form;
   const onSubmit = (data: formValues) => {
     console.log("submitted", data);
+    reset();
   };
   return (
     <>
-      <div
-        className="bg-cover bg-center"
-        style={{
-          // backgroundImage: `url(${BG})`,
-          mixBlendMode: "overlay",
-        }}
-      >
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
-              alt="Your Company"
-              // src={Logo}
-              className="mx-auto h-20 w-auto rounded-full"
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-400">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-black">
+            Sign In
+          </h2>
+        </div>
+
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            method="POST"
+            className="space-y-6"
+            noValidate
+          >
+            <InputTextField
+              title="First Name"
+              type="text"
+              name="firstName"
+              register={register}
             />
-            <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-black">
-              Sign In to your account
-            </h2>
-          </div>
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              method="POST"
-              className="space-y-6"
-              noValidate
-            >
-              <div>
-                {errors.email && (
-                  <p className="text-red-500">Email is required</p>
-                )}
-                <InputTextField
-                  title="Email ID"
-                  type="email"
-                  name="email"
+            <InputTextField
+              title="Last Name"
+              type="text"
+              name="lastName"
+              register={register}
+            />
+
+            <InputTextField
+              title="Email ID"
+              type="email"
+              name="email"
+              register={register}
+            />
+
+            <InputTextField
+              title="Password"
+              type="password"
+              name="password"
+              register={register}
+            />
+            <InputTextField
+              title="Mobile No"
+              type="tel"
+              name="mobileNo"
+              register={register}
+            />
+
+            <div className="flex">
+              <div className="w-1/2 pl-2">
+                <DatePicker
+                  title="Date Of Birth"
+                  type="date"
+                  name="dateOfBirth"
                   register={register}
                 />
               </div>
-
-              <div>
-                {errors.password && (
-                  <p className="text-red-500">password is required</p>
-                )}
-                <InputTextField
-                  title="Password"
-                  type="password"
-                  name="password"
-                  register={register}
-                />
-                {/* <div className="flex items-center justify-between">
-                  <div className="text-sm">
-                    <a
-                      href="#"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-                </div> */}
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              <div className="w-1/2 pl-2">
+                <label
+                  htmlFor="Gender"
+                  className="block w-1/2 text-sm font-medium leading-6  text-black"
                 >
-                  Log In
-                </button>
+                  Gender
+                </label>
+                <select
+                  title="Gender"
+                  // name="gender"
+                  {...register("gender", {
+                    required: `Please enter a valid Gender`,
+                  })}
+                  className="block w-full rounded-md border-0 py-2 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                >
+                  <option value="">Select the value</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
-            </form>
-          </div>
+            </div>
+
+            <Button type="submit" title="Sign In" />
+          </form>
         </div>
       </div>
     </>

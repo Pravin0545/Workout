@@ -7,7 +7,7 @@ const Label = ({ title }: label) => {
   return (
     <label
       htmlFor={title}
-      className="block text-sm font-medium leading-6  text-black"
+      className="block w-1/2 text-sm font-medium leading-6  text-black"
     >
       {title}
     </label>
